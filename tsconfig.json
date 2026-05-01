@@ -7,6 +7,7 @@
     "outDir": "./dist",
     "esModuleInterop": true,
     "strict": true,
-    "verbatimModuleSyntax": false
+    "verbatimModuleSyntax": false,
+    "ignoreDeprecations": "6.0"
   }
 }
