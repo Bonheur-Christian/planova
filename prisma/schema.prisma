@@ -20,6 +20,8 @@ model User {
   role      Role      @default(USER)
   bookings  Booking[]
   createdAt DateTime  @default(now())
+
+  @@map("users")
 }
 
 model Event {
@@ -30,6 +32,8 @@ model Event {
   totalSeats  Int
   bookings    Booking[]
   createdAt   DateTime  @default(now())
+
+  @@map("events")
 }
 
 model Booking {
@@ -41,6 +45,8 @@ model Booking {
 
   user  User  @relation(fields: [userId], references: [id])
   event Event @relation(fields: [eventId], references: [id])
+
+  @@map("bookings")
 }
 
 enum Role {
