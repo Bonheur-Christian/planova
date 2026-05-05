@@ -3,22 +3,24 @@ import { z } from "zod";
 export const registerSchema = z.object({
   name: z.string().min(2, "Name is too short"),
 
-  email: z
-    .string()
-    .email("Invalid email format"),
+  email: z.string().email("Invalid email format"),
 
-  password: z
-    .string()
-    .min(6, "Password must be at least 6 characters"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
-export interface registerDto{
+export const loginSchema = z.object({
+  email: z.string().email("Invalid email format"),
+
+  password: z.string().min(6, "Password must be at least 6 characters"),
+});
+
+export interface registerDto {
   name: string;
   email: string;
   password: string;
 }
 
-export interface loginDto{
+export interface loginDto {
   email: string;
   password: string;
 }
