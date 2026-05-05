@@ -5,9 +5,12 @@ import { generateToken } from "../../utils/jwt";
 import { loginDto, registerDto } from "./auth.dto";
 
 export const register = async (userData: registerDto) => {
+  console.log("Received user data for registration:", userData);
   const existingUser = await prisma.user.findUnique({
     where: { email: userData.email },
   });
+
+  console.log("here is the existing user:", existingUser);
 
   if (existingUser) {
     throw new ApiError("Email already exists", 409);

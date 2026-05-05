@@ -24,6 +24,7 @@ model User {
   @@map("users")
 }
 
+
 model Event {
   id          String    @id @default(uuid())
   title       String
