@@ -5,9 +5,9 @@ import authRoutes from "./modules/auth/auth.routes";
 const app = express();
 
 app.use(express.json());
-app.use(errorHandler);
 
 //authentication routes
 app.use("/api/auth", authRoutes);
 
+app.use(errorHandler);
 export default app;

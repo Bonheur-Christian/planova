@@ -1,3 +1,4 @@
+import { id } from "zod/v4/locales";
 import prisma from "../../config/prisma";
 import { ApiError } from "../../utils/ApiError";
 import { comparePassword, hashPassword } from "../../utils/hash";
@@ -5,12 +6,9 @@ import { generateToken } from "../../utils/jwt";
 import { loginDto, registerDto } from "./auth.dto";
 
 export const register = async (userData: registerDto) => {
-  console.log("Received user data for registration:", userData);
   const existingUser = await prisma.user.findUnique({
     where: { email: userData.email },
   });
-
-  console.log("here is the existing user:", existingUser);
 
   if (existingUser) {
     throw new ApiError("Email already exists", 409);
@@ -26,7 +24,12 @@ export const register = async (userData: registerDto) => {
     },
   });
 
-  return user;
+  return {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+  };
 };
 
 export const login = async (userData: loginDto) => {
@@ -35,7 +38,7 @@ export const login = async (userData: loginDto) => {
   });
 
   if (!user) {
-    throw new ApiError("Invalid email or password", 400);
+    throw new ApiError("User with that email does not exist", 400);
   }
 
   const isMatch = await comparePassword(userData.password, user.password);
@@ -46,6 +49,11 @@ export const login = async (userData: loginDto) => {
 
   return {
     token: generateToken({ id: user.id }),
-    user,
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    },
   };
 };
