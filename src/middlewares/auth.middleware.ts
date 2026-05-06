@@ -2,6 +2,15 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { ApiError } from "../utils/ApiError";
 
+export interface AuthRequest extends Request {
+  user?: {
+    id: string;
+    email: string;
+    role:string;
+  };
+}
+
+
 export const authMiddleware = (
   req: Request,
   res: Response,
