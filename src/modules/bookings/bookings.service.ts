@@ -105,7 +105,10 @@ export const getEventBookingsService = async (eventId: string) => {
  * CANCEL BOOKING
  */
 
-export const cancelBookingService = async (bookingId: string, userId: string) => {
+export const cancelBookingService = async (
+  bookingId: string,
+  userId: string,
+) => {
   const booking = await prisma.booking.findUnique({
     where: { id: bookingId },
   });

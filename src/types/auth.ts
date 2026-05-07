@@ -1,7 +1,8 @@
 // types/auth.ts
 export interface JWTPayload {
-  userId: string;
+  id: string;
   email: string;
+  role: string;
   iat?: number;
   exp?: number;
 }

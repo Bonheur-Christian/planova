@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { Roles } from "../../enums/roles";
 
 export const registerSchema = z.object({
   name: z.string().min(2, "Name is too short"),
@@ -23,4 +24,9 @@ export interface registerDto {
 export interface loginDto {
   email: string;
   password: string;
+}
+
+
+export interface updateUserDto { 
+  role: Roles;
 }

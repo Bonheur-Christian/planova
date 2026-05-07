@@ -14,8 +14,6 @@ export const createBooking = asyncHandler(
   async (req: Request, res: Response) => {
     const userId = req.user?.id;
 
-    console.log("User ID from request:", userId); // Debugging log
-
     if (!userId) {
       throw new Error("Unauthorized");
     }
@@ -46,6 +44,7 @@ export const getMyBookings = asyncHandler(
       success: true,
       data: bookings,
     });
+
   },
 );
 

@@ -4,12 +4,12 @@ import {
   cancelBooking,
   getMyBookings,
 } from "./bookings.controller";
-import { authenticate } from "../../middlewares/auth.middleware";
+import { protect } from "../../middlewares/protect.middleware";
 
 const router = express.Router();
 
-router.post("/", authenticate, createBooking);
-router.delete("/:id", authenticate, cancelBooking);
-router.get("/me", authenticate, getMyBookings);
+router.post("/create", protect(), createBooking);
+router.delete("/:id", protect(), cancelBooking);
+router.get("/me", protect(), getMyBookings);
 
 export default router;

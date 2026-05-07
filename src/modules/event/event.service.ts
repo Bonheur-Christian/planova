@@ -83,7 +83,6 @@ export const updateEventService = async (id: string, data: any) => {
       ...(data.date && { date: new Date(data.date) }),
       ...(data.totalSeats && {
         totalSeats: data.totalSeats,
-        availableSeats: data.totalSeats,
       }),
     },
   });
