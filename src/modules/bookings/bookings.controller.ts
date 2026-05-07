@@ -14,13 +14,15 @@ export const createBooking = asyncHandler(
   async (req: Request, res: Response) => {
     const userId = req.user?.id;
 
+    console.log("User ID from request:", userId); // Debugging log
+
     if (!userId) {
       throw new Error("Unauthorized");
     }
 
     const booking = await createBookingService(
-      { eventId: req.body.eventId }, // ✅ correct DTO
-      userId // ✅ second argument
+      { eventId: req.body.eventId }, 
+      userId
     );
 
     res.status(201).json({

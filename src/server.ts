@@ -1,3 +1,4 @@
+import "./types/express";
 import app from "./app";
 
 const PORT = process.env.PORT || 4001;
