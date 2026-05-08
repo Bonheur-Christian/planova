@@ -19,8 +19,8 @@ export const createBooking = asyncHandler(
     }
 
     const booking = await createBookingService(
-      { eventId: req.body.eventId }, 
-      userId
+      { eventId: req.body.eventId },
+      userId,
     );
 
     res.status(201).json({
@@ -28,7 +28,7 @@ export const createBooking = asyncHandler(
       message: "Booking created successfully",
       data: booking,
     });
-  }
+  },
 );
 
 /**
@@ -44,7 +44,6 @@ export const getMyBookings = asyncHandler(
       success: true,
       data: bookings,
     });
-
   },
 );
 
