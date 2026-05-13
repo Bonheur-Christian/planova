@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { errorHandler } from "./middlewares/error.middleware";
 import eventRoutes from "./modules/event/event.routes";
 import authRoutes from "./modules/auth/auth.routes";
@@ -8,15 +9,12 @@ import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./swagger/swagger";
 
 const app = express();
+app.use(cors());
 
 app.use(express.json());
 
 //SWAGGER DOCS ROUTE
-app.use(
-  "/api-docs",
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerSpec)
-);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 //AUTH ROUTES
 app.use("/api/auth", authRoutes);
 
