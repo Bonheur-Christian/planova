@@ -10,6 +10,8 @@ export const protect = (...allowedRoles: Roles[]) => {
       /**
        * GET TOKEN
        */
+
+      console.log(req.headers.authorization);
       const authHeader = req.headers.authorization;
 
       if (!authHeader || !authHeader.startsWith("Bearer ")) {

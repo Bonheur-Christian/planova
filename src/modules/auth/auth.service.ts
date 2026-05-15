@@ -56,3 +56,28 @@ export const login = async (userData: loginDto) => {
     },
   };
 };
+
+export const logout = async () => {
+  return {
+    message: "Logged out successfully",
+  };
+};
+
+export const getCurrentUser = async (userId: string) => {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      createdAt: true,
+    },
+  });
+
+  if (!user) {
+    throw new ApiError("User not found", 404);
+  }
+
+  return user;
+};

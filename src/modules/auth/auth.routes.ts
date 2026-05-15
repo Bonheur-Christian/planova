@@ -2,6 +2,7 @@ import { Router } from "express";
 import * as controller from "./auth.controller";
 import { validate } from "../../middlewares/validate.middleware";
 import { loginSchema, registerSchema } from "./auth.dto";
+import { protect } from "../../middlewares/protect.middleware";
 
 const router = Router();
 
@@ -78,4 +79,32 @@ router.post("/register", validate(registerSchema), controller.createUser);
  */
 router.post("/login", validate(loginSchema), controller.loginUser);
 
+/**
+ * @swagger
+ * /api/auth/me:
+ *   get:
+ *     summary: Get current user
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Current user data
+ */
+router.get("/me", protect(), controller.getMe);
 export default router;
+
+
+/**
+ * @swagger
+ * /api/auth/logout:
+ *   post:
+ *     summary: Logout user
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Logout successful
+ */
+router.post("/logout", protect(), controller.logoutUser);

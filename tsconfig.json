@@ -1,16 +1,31 @@
+// {
+//   "compilerOptions": {
+//     "target": "ES2020",
+//     "module": "CommonJS",
+//     "moduleResolution": "node",
+//     "rootDir": "./src",
+//     "outDir": "./dist",
+//     "esModuleInterop": true,
+//     "strict": true,
+//     "verbatimModuleSyntax": false,
+//     "typeRoots": ["./node_modules/@types", "./src/types"]
+//   },
+//   "include": ["src/**/*"],
+//   "exclude": ["node_modules"]
+// }
+
+
 {
   "compilerOptions": {
     "target": "ES2020",
     "module": "CommonJS",
     "moduleResolution": "node",
-    "rootDir": "./src",
     "outDir": "./dist",
     "esModuleInterop": true,
     "strict": true,
     "verbatimModuleSyntax": false,
-    "ignoreDeprecations": "6.0",
-    "typeRoots": ["./node_modules/@types", "./src/types"]
+    "types": ["node"]
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "prisma.config.ts"],
   "exclude": ["node_modules"]
 }
