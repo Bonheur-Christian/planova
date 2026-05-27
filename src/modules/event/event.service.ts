@@ -39,11 +39,14 @@ export const getAllEventsService = async (query: any) => {
     },
   });
 
-  const total = await prisma.event.count();
-
-  if (events.length === 0) {
-    throw new ApiError("No events found", 404);
-  }
+  const total = await prisma.event.count({
+    where: {
+      title: {
+        contains: search,
+        mode: "insensitive",
+      },
+    },
+  });
 
   return {
     data: events,
@@ -54,7 +57,7 @@ export const getAllEventsService = async (query: any) => {
       totalPages: Math.ceil(total / limit),
     },
   };
-};
+};   
 
 /**
  * GET SINGLE EVENT
